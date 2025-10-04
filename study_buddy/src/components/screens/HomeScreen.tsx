@@ -1,12 +1,70 @@
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ThemeSwitch } from '@/components/ui/theme-switch';
 import { Users, MessageCircle, Clock, TrendingUp, Target, BookOpen, Sparkles, Zap } from 'lucide-react';
 import heroStudents from '@/assets/hero-students.jpg';
+import fotoStudents from '@/assets/foto-students.jpg';
+import collage from '@/assets/collage.png';
+import collage1 from '@/assets/collage_1.jpg';
+import collage2 from '@/assets/collage_2.jpg';
 import { cn } from '@/lib/utils';
 
 export function HomeScreen() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Hero carousel images with different study scenarios
+  const heroImages = [
+    {
+      src: heroStudents,
+      title: "Join Study Groups",
+      subtitle: "Find your perfect study partners and level up together!",
+      badge: "🔥 Trending",
+      icon: <Zap className="w-5 h-5 text-yellow-400" />
+    },
+    {
+      src: fotoStudents,
+      title: "Study Together",
+      subtitle: "Collaborative learning that makes studying fun and effective!",
+      badge: "✨ Popular",
+      icon: <Sparkles className="w-5 h-5 text-blue-400" />
+    },
+    {
+      src: collage,
+      title: "Campus Life",
+      subtitle: "Experience the vibrant student community and make memories!",
+      badge: "� Moments",
+      icon: <Target className="w-5 h-5 text-green-400" />
+    },
+    {
+      src: collage1,
+      title: "Study Success",
+      subtitle: "Achieve your academic goals with peer support and motivation!",
+      badge: "� Goals",
+      icon: <BookOpen className="w-5 h-5 text-purple-400" />
+    },
+    {
+      src: collage2,
+      title: "Connect & Learn",
+      subtitle: "Build lasting friendships while excelling in your studies!",
+      badge: "🤝 Friends",
+      icon: <Users className="w-5 h-5 text-cyan-400" />
+    }
+  ];
+
+  // Auto-rotate carousel every 3 seconds, pause on hover
+  useEffect(() => {
+    if (isPaused) return;
+    
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [heroImages.length, isPaused]);
+
   const stats = [
     { label: 'Study Partners', value: '12', icon: Users, color: 'text-primary' },
     { label: 'Messages', value: '47', icon: MessageCircle, color: 'text-success' },
@@ -50,24 +108,97 @@ export function HomeScreen() {
           </div>
         </div>
         
-        {/* Hero image with modern overlay */}
-        <div className="relative rounded-2xl overflow-hidden mb-4 card-hover">
-          <img 
-            src={heroStudents} 
-            alt="Students studying" 
-            className="w-full h-48 object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end">
-            <div className="p-6 text-white">
-              <h3 className="font-semibold text-lg flex items-center gap-2">
-                Join Study Groups 
-                <Zap className="w-5 h-5 text-yellow-400" />
-              </h3>
-              <p className="text-sm opacity-90">Find your perfect study partners and level up together!</p>
-            </div>
+        {/* Hero Carousel with Auto-rotation */}
+        <div 
+          className="relative rounded-2xl overflow-hidden mb-4 card-hover group"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <div className="relative h-72 sm:h-80 md:h-96">
+            {heroImages.map((image, index) => (
+              <div
+                key={index}
+                className={cn(
+                  "absolute inset-0 transition-all duration-1000 ease-in-out",
+                  index === currentSlide
+                    ? "opacity-100 transform scale-100"
+                    : "opacity-0 transform scale-105"
+                )}
+              >
+                <img 
+                  src={image.src} 
+                  alt={image.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end">
+                  <div className="p-6 text-white">
+                    <h3 className="font-semibold text-xl flex items-center gap-2 mb-2">
+                      {image.title}
+                      {image.icon}
+                    </h3>
+                    <p className="text-base opacity-90 leading-relaxed">{image.subtitle}</p>
+                  </div>
+                </div>
+                <div className="absolute top-4 right-4 bg-primary/20 backdrop-blur-sm rounded-full px-4 py-2">
+                  <span className="text-white text-sm font-medium">{image.badge}</span>
+                </div>
+                
+                {/* Pause indicator */}
+                {isPaused && (
+                  <div className="absolute top-4 left-4 bg-black/30 backdrop-blur-sm rounded-full px-3 py-1">
+                    <span className="text-white text-xs">⏸️ Paused</span>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
-          <div className="absolute top-4 right-4 bg-primary/20 backdrop-blur-sm rounded-full px-3 py-1">
-            <span className="text-white text-sm font-medium">🔥 Trending</span>
+          
+          {/* Navigation arrows */}
+          <button
+            onClick={() => setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length)}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 backdrop-blur-sm rounded-full p-2 text-white transition-all duration-200 opacity-0 group-hover:opacity-100"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          
+          <button
+            onClick={() => setCurrentSlide((prev) => (prev + 1) % heroImages.length)}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 backdrop-blur-sm rounded-full p-2 text-white transition-all duration-200 opacity-0 group-hover:opacity-100"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          
+          {/* Carousel Indicators */}
+          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            {heroImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={cn(
+                  "h-2 rounded-full transition-all duration-300 hover:bg-white/75",
+                  index === currentSlide
+                    ? "bg-white w-8"
+                    : "bg-white/50 w-2"
+                )}
+              />
+            ))}
+          </div>
+          
+          {/* Auto-rotation progress bar */}
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/20">
+            <div 
+              className={cn(
+                "h-full bg-gradient-primary transition-all ease-linear",
+                isPaused ? "duration-0" : "duration-3000"
+              )}
+              style={{
+                width: isPaused ? '100%' : `${((currentSlide + 1) / heroImages.length) * 100}%`
+              }}
+            />
           </div>
         </div>
       </div>
