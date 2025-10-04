@@ -1,0 +1,398 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Campus Connect - Modern Youth-Friendly Design System */
+
+@layer base {
+  :root {
+    /* Light theme - bright and energetic */
+    --background: 0 0% 100%;
+    --foreground: 222 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 4.9%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 4.9%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    --primary-glow: 221 83% 73%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 84% 4.9%;
+    
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 84% 4.9%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --success: 142 76% 56%;
+    --success-foreground: 210 40% 98%;
+    
+    --warning: 47 96% 53%;
+    --warning-foreground: 222 84% 4.9%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+
+    /* Design tokens */
+    --radius: 1rem;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(210 40% 98%));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(210 40% 98%));
+    
+    /* Shadows */
+    --shadow-card: 0 8px 32px rgba(59, 130, 246, 0.15);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.3);
+    --shadow-elevated: 0 20px 60px rgba(0, 0, 0, 0.1);
+    
+    /* Animation */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark theme - sleek and modern */
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 258 90% 66%;
+    --primary-foreground: 222 84% 4.9%;
+    --primary-glow: 266 100% 82%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 258 90% 66%;
+    
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(222 84% 6%));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(222 84% 6%));
+    --shadow-card: 0 8px 32px rgba(147, 51, 234, 0.15);
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .neon {
+    /* Neon theme - vibrant and electric with light background */
+    --background: 330 40% 97%;
+    --foreground: 330 90% 10%;
+
+    --card: 330 30% 95%;
+    --card-foreground: 330 90% 15%;
+
+    --popover: 330 25% 96%;
+    --popover-foreground: 330 90% 10%;
+
+    --primary: 320 100% 50%;
+    --primary-foreground: 330 40% 97%;
+    --primary-glow: 320 100% 60%;
+
+    --secondary: 330 20% 88%;
+    --secondary-foreground: 330 90% 15%;
+
+    --muted: 330 15% 90%;
+    --muted-foreground: 330 40% 40%;
+
+    --accent: 120 80% 45%;
+    --accent-foreground: 330 40% 97%;
+
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 330 40% 97%;
+
+    --success: 120 70% 40%;
+    --success-foreground: 330 40% 97%;
+
+    --warning: 60 85% 45%;
+    --warning-foreground: 330 40% 97%;
+
+    --border: 330 30% 85%;
+    --input: 330 20% 92%;
+    --ring: 320 100% 50%;
+
+    --gradient-primary: linear-gradient(135deg, #ff0080, #00ff80);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(330 25% 93%));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(330 30% 95%));
+    --shadow-card: 0 8px 32px rgba(255, 0, 128, 0.15);
+    --shadow-glow: 0 0 40px rgba(255, 0, 128, 0.25);
+  }
+
+  .sunset {
+    /* Sunset theme - warm and cozy with light background */
+    --background: 25 45% 96%;
+    --foreground: 20 80% 15%;
+
+    --card: 20 35% 93%;
+    --card-foreground: 20 80% 20%;
+
+    --popover: 25 30% 95%;
+    --popover-foreground: 20 80% 15%;
+
+    --primary: 15 85% 55%;
+    --primary-foreground: 25 45% 96%;
+    --primary-glow: 15 90% 65%;
+
+    --secondary: 20 25% 87%;
+    --secondary-foreground: 20 80% 20%;
+
+    --muted: 20 20% 89%;
+    --muted-foreground: 20 50% 45%;
+
+    --accent: 330 80% 60%;
+    --accent-foreground: 25 45% 96%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 25 45% 96%;
+
+    --success: 120 50% 40%;
+    --success-foreground: 25 45% 96%;
+
+    --warning: 45 80% 50%;
+    --warning-foreground: 25 45% 96%;
+
+    --border: 20 30% 82%;
+    --input: 20 25% 90%;
+    --ring: 15 85% 55%;
+
+    --gradient-primary: linear-gradient(135deg, #ff6b35, #f7931e);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(20 30% 91%));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(25 35% 94%));
+    --shadow-card: 0 8px 32px rgba(255, 107, 53, 0.15);
+    --shadow-glow: 0 0 40px rgba(247, 147, 30, 0.2);
+  }
+
+  .ocean {
+    /* Ocean theme - calm and refreshing with light background */
+    --background: 205 50% 96%;
+    --foreground: 200 85% 15%;
+
+    --card: 200 40% 93%;
+    --card-foreground: 200 85% 20%;
+
+    --popover: 205 35% 95%;
+    --popover-foreground: 200 85% 15%;
+
+    --primary: 200 85% 45%;
+    --primary-foreground: 205 50% 96%;
+    --primary-glow: 200 90% 60%;
+
+    --secondary: 200 25% 87%;
+    --secondary-foreground: 200 85% 20%;
+
+    --muted: 200 20% 89%;
+    --muted-foreground: 200 50% 45%;
+
+    --accent: 180 70% 40%;
+    --accent-foreground: 205 50% 96%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 205 50% 96%;
+
+    --success: 150 60% 40%;
+    --success-foreground: 205 50% 96%;
+
+    --warning: 50 80% 45%;
+    --warning-foreground: 205 50% 96%;
+
+    --border: 200 30% 82%;
+    --input: 200 25% 90%;
+    --ring: 200 85% 45%;
+
+    --gradient-primary: linear-gradient(135deg, #0077be, #00a8cc);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(200 35% 91%));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(205 40% 94%));
+    --shadow-card: 0 8px 32px rgba(0, 119, 190, 0.12);
+    --shadow-glow: 0 0 40px rgba(0, 168, 204, 0.2);
+  }
+
+  .forest {
+    /* Forest theme - natural and earthy with light background */
+    --background: 95 35% 96%;
+    --foreground: 90 70% 20%;
+
+    --card: 90 30% 93%;
+    --card-foreground: 90 70% 25%;
+
+    --popover: 95 25% 95%;
+    --popover-foreground: 90 70% 20%;
+
+    --primary: 90 55% 40%;
+    --primary-foreground: 95 35% 96%;
+    --primary-glow: 90 60% 55%;
+
+    --secondary: 90 20% 87%;
+    --secondary-foreground: 90 70% 25%;
+
+    --muted: 90 15% 89%;
+    --muted-foreground: 90 40% 45%;
+
+    --accent: 120 45% 45%;
+    --accent-foreground: 95 35% 96%;
+
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 95 35% 96%;
+
+    --success: 120 50% 40%;
+    --success-foreground: 95 35% 96%;
+
+    --warning: 45 75% 50%;
+    --warning-foreground: 95 35% 96%;
+
+    --border: 90 25% 82%;
+    --input: 90 20% 90%;
+    --ring: 90 55% 40%;
+
+    --gradient-primary: linear-gradient(135deg, #6a994e, #a7c957);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(90 25% 91%));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(95 30% 94%));
+    --shadow-card: 0 8px 32px rgba(106, 153, 78, 0.12);
+    --shadow-glow: 0 0 40px rgba(167, 201, 87, 0.15);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Modern glass morphism effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Animated gradient backgrounds */
+  .gradient-animate {
+    background: linear-gradient(-45deg, 
+      hsl(var(--primary)), 
+      hsl(var(--primary-glow)), 
+      hsl(var(--accent)), 
+      hsl(var(--primary))
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Floating animation for interactive elements */
+  .float-gentle {
+    animation: float-gentle 6s ease-in-out infinite;
+  }
+
+  @keyframes float-gentle {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* Modern button hover effects */
+  .btn-modern {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-modern:hover::before {
+    left: 100%;
+  }
+
+  /* Smooth scale animation for cards */
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-elevated);
+  }
+
+  /* Neon glow effect for special elements */
+  .neon-glow {
+    box-shadow: 
+      0 0 5px hsl(var(--primary)),
+      0 0 10px hsl(var(--primary)),
+      0 0 15px hsl(var(--primary)),
+      0 0 20px hsl(var(--primary));
+  }
+
+  /* Youth-friendly pulse animation */
+  .pulse-soft {
+    animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  /* Modern scroll indicator */
+  .scroll-indicator {
+    background: linear-gradient(90deg, 
+      hsl(var(--primary)) var(--scroll-progress, 0%), 
+      hsl(var(--muted)) var(--scroll-progress, 0%)
+    );
+  }
+}
